@@ -4,7 +4,7 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="crx_description" xmlns:xacro="http://ros.org/wiki/xacro">
-<link name="world"/>
+  <link name="world"/>
   <link
     name="base_link">
     <inertial>
@@ -45,7 +45,7 @@
       </geometry>
     </collision>
   </link>
-<joint name="base_link_joint" type="fixed">
+   <joint name="base_link_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <parent link="world"/>
       <child link="base_link"/>
@@ -94,7 +94,7 @@
     name="joint1"
     type="revolute">
     <origin
-      xyz="0 0 0.086"
+      xyz="0 0 0.1277"
       rpy="0 0 0" />
     <parent
       link="base_link" />
@@ -103,10 +103,10 @@
     <axis
       xyz="0 0 -1" />
     <limit
-     lower="-1.5707"
+      lower="-1.5707"
       upper="1.5707"
-      effort="0"
-      velocity="0" />
+      effort="10"
+      velocity="10" />
   </joint>
   <link
     name="link2">
@@ -152,8 +152,8 @@
     name="joint2"
     type="revolute">
     <origin
-      xyz="0 0 0.159"
-      rpy="1.5707963267949 0 1.5707963267949" />
+      xyz="0 0 0.1173"
+      rpy="1.5707963267949 0 0" />
     <parent
       link="link1" />
     <child
@@ -161,10 +161,10 @@
     <axis
       xyz="0 0 1" />
     <limit
-     lower="-1.5707"
+      lower="-1.5707"
       upper="1.5707"
-      effort="0"
-      velocity="0" />
+      effort="10"
+      velocity="10" />
   </joint>
   <link
     name="link3">
@@ -210,8 +210,8 @@
     name="joint3"
     type="revolute">
     <origin
-      xyz="0 0.710022037035655 0.076"
-      rpy="3.14159265358979 0 1.5707963267949" />
+      xyz="0 0.71 0"
+      rpy="3.14159265358979 0 0" />
     <parent
       link="link2" />
     <child
@@ -219,10 +219,10 @@
     <axis
       xyz="0 0 -1" />
     <limit
-     lower="-1.5707"
+      lower="-1.5707"
       upper="1.5707"
-      effort="0"
-      velocity="0" />
+      effort="10"
+      velocity="10" />
   </joint>
   <link
     name="link4">
@@ -268,8 +268,8 @@
     name="joint4"
     type="revolute">
     <origin
-      xyz="-2.20360585476698E-05 0.152996620049638 0.0759999984271975"
-      rpy="-1.5707963267949 0 0" />
+      xyz="0.54 0 0"
+      rpy="0 1.5707963267949 0" />
     <parent
       link="link3" />
     <child
@@ -277,10 +277,10 @@
     <axis
       xyz="0 0 -1" />
     <limit
-     lower="-1.5707"
+      lower="-1.5707"
       upper="1.5707"
-      effort="0"
-      velocity="0" />
+      effort="10"
+      velocity="10" />
   </joint>
   <link
     name="link5">
@@ -326,8 +326,8 @@
     name="joint5"
     type="revolute">
     <origin
-      xyz="0 0.0639999984271975 0.387"
-      rpy="-1.5707963267949 0 0" />
+      xyz="0.15 0 0"
+      rpy="0 1.5707963267949 0" />
     <parent
       link="link4" />
     <child
@@ -335,10 +335,10 @@
     <axis
       xyz="0 0 1" />
     <limit
-     lower="-1.5707"
+      lower="-1.5707"
       upper="1.5707"
-      effort="0"
-      velocity="0" />
+      effort="10"
+      velocity="10" />
   </joint>
   <link
     name="link6">
@@ -384,8 +384,8 @@
     name="joint6"
     type="revolute">
     <origin
-      xyz="0 -0.1525 0.0859999999999998"
-      rpy="1.5707963267949 0 0" />
+      xyz="-0.16 0 0"
+      rpy="-1.5707963267949 0 1.5707963267949" />
     <parent
       link="link5" />
     <child
@@ -393,12 +393,13 @@
     <axis
       xyz="0 0 -1" />
     <limit
-     lower="-1.5707"
+      lower="-1.5707"
       upper="1.5707"
-      effort="0"
-      velocity="0" />
+      effort="10"
+      velocity="10" />
   </joint>
-   <ros2_control name="GazeboSystem" type="system">
+
+ <ros2_control name="GazeboSystem" type="system">
   <hardware>
     <plugin>gazebo_ros2_control/GazeboSystem</plugin>
   </hardware>
