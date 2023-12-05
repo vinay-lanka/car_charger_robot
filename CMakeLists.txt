@@ -23,6 +23,7 @@ install(DIRECTORY
   launch
   worlds
   config
+  images
   DESTINATION share/${PROJECT_NAME}/
 )
 

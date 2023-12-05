@@ -5,7 +5,7 @@
 <robot
   name="camera_urdf" xmlns:xacro="http://ros.org/wiki/xacro">
   <link
-    name="base_link">
+    name="camera_base_link">
     <inertial>
       <origin
         xyz="-9.38726697477174E-08 8.20875611498E-05 0.13869018261447"
@@ -47,7 +47,7 @@
    <link name="camera_link">
   </link>
   <joint name="camera_optical_joint" type="fixed">
-      <parent link="base_link"/>
+      <parent link="camera_base_link"/>
       <child link="camera_link"/>
       <origin xyz="0 0 1" rpy="0 0 ${pi/2}"/>
   </joint>

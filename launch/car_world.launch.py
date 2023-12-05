@@ -24,7 +24,7 @@ def generate_launch_description():
 
     world = os.path.join(
         get_package_share_directory('crx_description'),
-        'worlds/car_world.world'
+        'worlds/chargebot_world.world'
     )
 
     gzserver_cmd = IncludeLaunchDescription(
@@ -108,9 +108,9 @@ def generate_launch_description():
         package='gazebo_ros', 
         executable='spawn_entity.py',
         arguments=['-entity', 'camera_urdf', 
-                    '-topic', '/test/robot_description',
-                    '-x', '-1.0',
-                    '-y', '-1.0',
+                    '-topic', '/camera/robot_description',
+                    '-x', '-0.5',
+                    '-y', '-0.5',
                     '-z', '0.0'],
         output='screen'
     )
