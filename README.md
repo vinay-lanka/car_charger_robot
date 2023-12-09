@@ -13,27 +13,29 @@ On running the simulation from the launch file (instructions listed below), the 
 
 The package makes use of a template and point cloud matching based 3D (stereo) camera perception system and a damped least squares Jacobian velocity based inverse kinematics (IK) solver, both of which are custom implmentations.
 
-Below is the video depicting the simulation run showing the arm docking in the vehicle's charging port in real-time. Additionally, the original video can be found as the `media/sim.gif` file.
+Below is the video depicting the simulation run showing the arm docking in the vehicle's charging port in real-time. Additionally, the original video can be viewed as the `media/sim.gif` file.
 
-![gif of implementation](./media/sim.gif)
+<p align="center">
+  <img src="media/sim.gif" alt="animated" />
+</p>
 
-## Perception System
+## Perception Module
 
-For perception (detecting and localizing the psotion and orientation of the charging port of the EV), a stero/3D/RGBD camera is used. For simulation purposes, the depth camera Gazebo plugin is used. To extend this package to hardware systems, any stereo camera like an Intel RealSense D435 or Asus Xtion Pro can be used.
+For perception (detecting and localizing the postion and orientation of the charging port of the EV), a stero/3D/RGBD camera is used. In this package, the depth camera Gazebo plugin is called to simulate the RGBD readings (image and point cloud). To extend this package to real hardware systems, any stereo camera like an Intel RealSense D435 or Asus Xtion Pro can be fitted to the robot/system.
 
-The first level of perception includes template matching (based on the reference image of the charging port, present as the file `images/template.png`) by comparing cross-correlation at different scales and selcting the best fit, from which bounding box information is extracted.
+The first level of perception includes template matching (based on the reference image of the charging port, present as the file `images/template.png`) by comparing cross-correlation (between the tamplate and captured image) at different scales and selecting the best fit, from where bounding box information is extracted.
 
-After calculating the central pixel of the bouding box, the corresponding point in the point cloud is extracted to get the the 3D coordinates of the charging port in the camera's frame of reference (second layer of perception). Further, the normal to the plane best fitting the points corresponding to the central pixel and the others surrounding it is calculated and the desired orienation is published along with the position, which are later converted to the arm's base coordinate frame.
+After calculating the central pixel of the bouding box, the corresponding point in the point cloud is localized to get the the 3D coordinates of the charging port in the camera's frame of reference (second layer of perception). Further, the vector normal to the plane best fitting the points corresponding to the central pixel and the others surrounding it is calculated and the desired orienation is published along with the position, which are later converted to the arm's base coordinate frame.
 
 ## Inverse Kinematics Solver
 
-To mitigate the high joint velocity effects of Jacobian Inverse and Jacobian Transpose IK velocity methods when approaching singularity positions, this package makes use of a custom damped least squares Jacobian velocity IK implementation, using a Simgularity Resistant Inverse (SRI) Matrix (J*) that keeps joint velocities in check and avoids going into singularity configurations.
+To mitigate the high joint velocity effects of the Jacobian Inverse and Jacobian Transpose IK velocity methods when approaching singularity positions, this package makes use of a custom damped least squares Jacobian velocity IK implementation, using a Simgularity Resistant Inverse (SRI) Matrix (J*) that keeps joint velocities in check and avoids the robot from reaching near-singularity configurations.
 
 
 ## Dependencies
-This project makes use of the ROS Galactic Geochelone distribution on an Ubuntu 20.04 operating system and is assumed to be a dependency. Find installation instructions for the same [here](https://docs.ros.org/en/galactic/Installation.html).
+This project makes use of the ROS Galactic Geochelone distribution on an Ubuntu 20.04 operating system. Find installation instructions for ROS 2 Galactic [here](https://docs.ros.org/en/galactic/Installation.html).
 
-Other library dependencies of this package includes Python 3's Numpy, Matplotlib, Open CV, and Scipy packages. They can be installed using the commands listed below (make sure pip3 is installed on your system beforehand).
+Other library dependencies of this package includes Python 3's Numpy, Matplotlib, Open CV, and Scipy packages. They can be installed using the commands listed below (make sure Python 3 and pip3 are installed on your system beforehand).
 ```bash
 # Install Numpy
 $ pip3 install numpy
@@ -55,17 +57,17 @@ Other ROS package dependencies are taken care of automatically by running the *r
 
 ## Building and Installing the Package
 
-To setup and build the package, run the commands below (these instructions build the package in a new workspace)
+To setup and build the package, run the commands below (these instructions build the package in a newly created ROS 2 workspace)
 ```bash
 # Initially, run the source command
 $ source /opt/ros/galactic/setup.bash
-# Make your ros2 workspace
+# Make your ROS 2 workspace
 $ mkdir -p ~/ros_ws/src
 # Go to the source directory of your ROS 2 workspace
 $ cd ~/ros_ws/src
 #Clone the repository
 $ git clone https://github.com/vikrams169/Car-Charging-Robot.git
-#Go back to the ws directory
+#Go back to the ROS 2 workspace directory
 $ cd ~/ros_ws
 # Install rosdep dependencies before building the package
 $ rosdep install -i --from-path src --rosdistro galactic -y
