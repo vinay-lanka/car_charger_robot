@@ -50,7 +50,7 @@ class CalcCoords(Node):
         image_width = image_gray.shape[1]
         h, w = template_gray.shape
         scale_results = []
-        scales = np.linspace(0.75,2,30)[::-1]
+        scales = np.linspace(0.5,3.5,30)[::-1]
         for scale in scales:
             resized_template = cv2.resize(template_gray, (int(w*scale), int(h*scale)))
             result = cv2.matchTemplate(image_gray, resized_template, cv2.TM_CCOEFF_NORMED)

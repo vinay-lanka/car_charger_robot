@@ -24,7 +24,7 @@ def generate_launch_description():
 
     world = os.path.join(
         get_package_share_directory('crx_description'),
-        'worlds/chargebot_world.world'
+        'worlds/charge_station.world'
     )
 
     gzserver_cmd = IncludeLaunchDescription(
@@ -96,7 +96,7 @@ def generate_launch_description():
     camera_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        namespace='test',
+        namespace='camera',
         parameters=[{
             'use_sim_time': use_sim_time,
             'robot_description': ParameterValue(

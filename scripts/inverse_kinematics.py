@@ -80,3 +80,12 @@ jacobian_matrix = Matrix.hstack(J1,J2,J3,J4,J5,J6)
 
 jacobian_function = lambdify([theta1,theta2,theta3,theta4,theta5,theta6],jacobian_matrix)
 t0p_function = lambdify([theta1,theta2,theta3,theta4,theta5,theta6],T0P_symbols)
+
+# def round_expr(expr, num_digits):
+#     return expr.xreplace({n : round(n, num_digits) for n in expr.atoms(Number)})
+
+# print("Final Transformation Matrix")
+# pprint(round_expr(T0P_symbols, 3))
+
+# # print("Jacobian Matrix")
+# # pprint(jacobian_matrix)

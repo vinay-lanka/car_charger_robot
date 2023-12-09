@@ -12,17 +12,11 @@ class fk_publish_node(Node):
         timer_period = 1.0  # seconds
         self.timer = self.create_timer(timer_period, self.fk_pub)
         self.theta1 = math.radians(0)
-        self.theta2 = math.radians(-0)
-        self.theta3 = math.radians(-0)
-        self.theta4 = math.radians(0)
-        self.theta5 = math.radians(-0)
+        self.theta2 = math.radians(-15)
+        self.theta3 = math.radians(-30)
+        self.theta4 = math.radians(10)
+        self.theta5 = math.radians(-10)
         self.theta6 = math.radians(0)
-        # self.theta1 = math.radians(78)
-        # self.theta2 = math.radians(90)
-        # self.theta3 = math.radians(24)
-        # self.theta4 = math.radians(42)
-        # self.theta5 = math.radians(-60)
-        # self.theta6 = math.radians(-10)
 
 
     def fk_pub(self):
